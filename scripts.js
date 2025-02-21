@@ -31,6 +31,7 @@ document.body.addEventListener('click', () => {
 const infoPanel = document.getElementById('infoPanel');
 const bodyName = document.getElementById('bodyName');
 const bodyInfo = document.getElementById('bodyInfo');
+const followStatus = document.getElementById('followStatus');
 const hamburgerBtn = document.querySelector('.hamburger-btn');
 const menuContent = document.querySelector('.menu-content');
 const bodiesBtn = document.querySelector('.bodies-btn');
@@ -40,12 +41,13 @@ const bodiesContent = document.getElementById('bodiesList');
 let time = 0;
 const sizeScale = 0.000005;
 const distanceScale = 50;
-let orbitSpeedScale = 0.00125; // Reduced by another 50% from 0.0025 (now 25% of original 0.005)
+let orbitSpeedScale = 0.00125; // 25% of original 0.005
 let speedMultiplier = 1.0;
 let isPaused = false;
 let selectedBody = null;
 let followedBody = null;
-let cameraOffset = new THREE.Vector3(0, 20, 50); // Default offset
+let isFollowing = false; // Toggleable follow mode
+let cameraOffset = new THREE.Vector3(0, 20, 50);
 let isMenuOpen = false;
 let isBodiesMenuOpen = false;
 
@@ -206,14 +208,23 @@ function followBody(bodyName) {
         bodyName.textContent = selectedBody.name;
         bodyInfo.textContent = selectedBody.info;
         infoPanel.style.display = 'block';
-        // Set initial camera position relative to the body
+        isFollowing = true; // Enable follow mode
+        followStatus.textContent = "Follow Mode: On";
         const targetPos = body.mesh.getWorldPosition(new THREE.Vector3());
-        cameraOffset = new THREE.Vector3(0, 20, 50); // Reset offset
+        cameraOffset = new THREE.Vector3(0, 20, 50);
         camera.position.copy(targetPos.clone().add(cameraOffset));
         controls.target.copy(targetPos);
         controls.update();
     }
 }
+
+// Toggle follow mode with 'E' key
+document.addEventListener('keydown', (event) => {
+    if (event.key.toLowerCase() === 'e' && followedBody) {
+        isFollowing = !isFollowing;
+        followStatus.textContent = isFollowing ? "Follow Mode: On" : "Follow Mode: Off";
+    }
+});
 
 // Raycaster for clicking
 const raycaster = new THREE.Raycaster();
@@ -278,18 +289,17 @@ function animate() {
     }
 
     // Follow selected body with adjustable zoom
-    if (followedBody) {
+    if (followedBody && isFollowing) {
         const targetPos = followedBody.mesh.getWorldPosition(new THREE.Vector3());
         controls.target.copy(targetPos);
-        // Update camera position with zoom-adjusted offset
         const zoomDistance = camera.position.distanceTo(targetPos);
         const direction = cameraOffset.clone().normalize();
         camera.position.copy(targetPos.clone().add(direction.multiplyScalar(zoomDistance)));
         controls.update();
     }
 
-    // WASD movement (only if not following a body)
-    if (!followedBody) {
+    // WASD movement (only if not following)
+    if (!isFollowing) {
         const direction = new THREE.Vector3();
         camera.getWorldDirection(direction);
         const right = new THREE.Vector3().crossVectors(camera.up, direction).normalize();
