@@ -1,0 +1,149 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1a2525;
+}
+
+.container {
+    position: relative;
+    width: 1600px;
+    height: 800px;
+}
+
+#scene-container {
+    width: 100%;
+    height: 100%;
+}
+
+.hamburger-menu {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.hamburger-btn {
+    background: #ffffff20;
+    border: none;
+    color: white;
+    font-size: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.hamburger-btn:hover {
+    background: #ffffff40;
+}
+
+.menu-content {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.menu-content label {
+    color: white;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.speed-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.speed-buttons button {
+    padding: 5px 10px;
+    background: #ffffff20;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.speed-buttons button:hover {
+    background: #ffffff40;
+}
+
+.bodies-menu {
+    position: absolute;
+    top: 10px;
+    left: 60px;
+}
+
+.bodies-btn {
+    background: #ffffff20;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.bodies-btn:hover {
+    background: #ffffff40;
+}
+
+.bodies-content {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.bodies-content button {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    background: #ffffff20;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.bodies-content button:hover {
+    background: #ffffff40;
+}
+
+.info-panel {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 250px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    z-index: 1;
+}
+
+.info-panel h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.info-panel p {
+    margin: 0;
+    font-size: 14px;
+}

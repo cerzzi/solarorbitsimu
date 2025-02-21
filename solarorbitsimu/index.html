@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System 3D Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="scene-container"></div>
+        <div class="hamburger-menu">
+            <button class="hamburger-btn">☰</button>
+            <div class="menu-content">
+                <label>Orbit Speed:</label>
+                <div class="speed-buttons">
+                    <button onclick="setSpeed(0.1)">10%</button>
+                    <button onclick="setSpeed(0.2)">20%</button>
+                    <button onclick="setSpeed(0.3)">30%</button>
+                    <button onclick="setSpeed(0.4)">40%</button>
+                    <button onclick="setSpeed(0.5)">50%</button>
+                    <button onclick="setSpeed(0.6)">60%</button>
+                    <button onclick="setSpeed(0.7)">70%</button>
+                    <button onclick="setSpeed(0.8)">80%</button>
+                    <button onclick="setSpeed(0.9)">90%</button>
+                    <button onclick="setSpeed(1.0)">100%</button>
+                    <button onclick="pauseOrbit()">Pause</button>
+                    <button onclick="unpauseOrbit()">Unpause</button>
+                </div>
+            </div>
+        </div>
+        <div class="bodies-menu">
+            <button class="bodies-btn">Bodies</button>
+            <div class="bodies-content" id="bodiesList"></div>
+        </div>
+        <div class="info-panel" id="infoPanel">
+            <h2 id="bodyName"></h2>
+            <p id="bodyInfo"></p>
+        </div>
+    </div>
+    <audio id="interstellarAudio" src="interstellar.mp3"></audio>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.134/examples/js/controls/OrbitControls.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
