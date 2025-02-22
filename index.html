@@ -14,19 +14,25 @@
             <button class="hamburger-btn">☰</button>
             <div class="menu-content">
                 <label>Orbit Speed:</label>
+                <input type="range" id="speedSlider" min="0.1" max="1.0" step="0.1" value="1.0" onchange="setSpeed(this.value)">
+                <div id="speedValue">100%</div>
                 <div class="speed-buttons">
-                    <button onclick="setSpeed(0.1)">10%</button>
-                    <button onclick="setSpeed(0.2)">20%</button>
-                    <button onclick="setSpeed(0.3)">30%</button>
-                    <button onclick="setSpeed(0.4)">40%</button>
-                    <button onclick="setSpeed(0.5)">50%</button>
-                    <button onclick="setSpeed(0.6)">60%</button>
-                    <button onclick="setSpeed(0.7)">70%</button>
-                    <button onclick="setSpeed(0.8)">80%</button>
-                    <button onclick="setSpeed(0.9)">90%</button>
-                    <button onclick="setSpeed(1.0)">100%</button>
                     <button onclick="pauseOrbit()">Pause</button>
                     <button onclick="unpauseOrbit()">Unpause</button>
+                </div>
+                <label>Settings:</label>
+                <div class="settings-buttons">
+                    <button onclick="toggleTrails()">Toggle Trails (T)</button>
+                    <button onclick="toggleLabels()">Toggle Labels (L)</button>
+                    <button onclick="resetCamera()">Reset Camera (R)</button>
+                    <button onclick="toggleFullscreen()">Toggle Fullscreen</button>
+                    <button onclick="toggleHelp()">Help</button>
+                </div>
+                <label>Time Control:</label>
+                <div class="time-buttons">
+                    <button onclick="setTimeSpeed(-1)">Reverse (-1x)</button>
+                    <button onclick="setTimeSpeed(1)">Normal (1x)</button>
+                    <button onclick="setTimeSpeed(10)">Fast (10x)</button>
                 </div>
             </div>
         </div>
@@ -37,6 +43,28 @@
         <div class="info-panel" id="infoPanel">
             <h2 id="bodyName"></h2>
             <p id="bodyInfo"></p>
+            <button id="moreInfoBtn">More Information</button>
+            <button id="zoomToBodyBtn">Zoom to Body</button>
+            <button id="stopFollowingBtn">Stop Following</button>
+            <div class="more-info" id="moreInfoPanel">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+                    <button class="tab-btn" onclick="showTab('stats')">Stats</button>
+                    <button class="tab-btn" onclick="showTab('history')">History</button>
+                </div>
+                <div id="overview" class="tab-content"></div>
+                <div id="stats" class="tab-content" style="display: none;"></div>
+                <div id="history" class="tab-content" style="display: none;"></div>
+                <button id="closeMoreInfoBtn">Close</button>
+            </div>
+        </div>
+        <div class="notification" id="eventNotification"></div>
+        <div class="help-tooltip" id="helpTooltip" style="display: none;">
+            <p>Shortcuts:</p>
+            <p>T - Toggle Trails</p>
+            <p>L - Toggle Labels</p>
+            <p>R - Reset Camera</p>
+            <p>E - Toggle Follow Mode</p>
         </div>
     </div>
     <audio id="interstellarAudio" src="interstellar.mp3"></audio>
